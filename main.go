@@ -37,7 +37,7 @@ func main() {
 		text := c.PostForm("text")
 		status := c.PostForm("status")
 		controller.Create(text, status)
-		c.Redirect(302, "/")
+		c.Redirect(http.StatusFound, "/")
 	})
 
 	r.POST("/todo/:id/update", func(c *gin.Context) {
@@ -49,7 +49,7 @@ func main() {
 		text := c.PostForm("text")
 		status := c.PostForm("status")
 		controller.Update(id, text, status)
-		c.Redirect(302, "/")
+		c.Redirect(http.StatusFound, "/")
 	})
 
 	r.POST("/todo/:id/delete", func(c *gin.Context) {
@@ -59,7 +59,7 @@ func main() {
 			panic("ERROR")
 		}
 		controller.Delete(id)
-		c.Redirect(302, "/")
+		c.Redirect(http.StatusFound, "/")
 	})
 
 	r.Run()

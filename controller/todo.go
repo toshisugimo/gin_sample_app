@@ -30,10 +30,7 @@ func Create(text string, status string) {
 func Update(id int, text string, status string) {
 	db := db.Connection()
 	var todo model.Todo
-	db.First(&todo, id)
-	todo.Text = text
-	todo.Status = status
-	db.Save(&todo)
+	db.First(&todo, id).Update(&model.Todo{Text: text, Status: status})
 	db.Close()
 }
 
